@@ -1,25 +1,22 @@
-package mobsoft.hulcsa.com.moblab2017.ui.main;
+package mobsoft.hulcsa.com.moblab2017.ui.selected;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import javax.inject.Inject;
 
 import mobsoft.hulcsa.com.moblab2017.MobSoftApplication;
 import mobsoft.hulcsa.com.moblab2017.R;
 import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Toast;
+/**
+ * Created by mobsoft on 2017. 03. 24..
+ */
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-
-public class MainActivity extends AppCompatActivity implements MainScreen {
+public class SelectedActivity extends AppCompatActivity implements SelectedScreen {
 
     @Inject
-    MainPresenter mainPresenter;
+    SelectedPresenter selectedPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +30,22 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     @Override
     protected void onStart() {
         super.onStart();
-        MainPresenter.getInstance().attachScreen(this);
+        selectedPresenter.attachScreen(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mainPresenter.attachScreen(this);
+        selectedPresenter.attachScreen(this);
     }
 
     @Override
-    public void showMessage(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    public void showRecipe(Recipe recipe) {
+
     }
 
     @Override
-    public void showRecipeList(List<Recipe> recipeList) {
+    public void addFavorit(Recipe recipe) {
 
     }
 }

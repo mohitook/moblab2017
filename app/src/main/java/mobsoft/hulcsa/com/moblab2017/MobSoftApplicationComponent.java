@@ -4,7 +4,9 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import mobsoft.hulcsa.com.moblab2017.ui.UIModule;
+import mobsoft.hulcsa.com.moblab2017.ui.about.AboutActivity;
 import mobsoft.hulcsa.com.moblab2017.ui.main.MainActivity;
+import mobsoft.hulcsa.com.moblab2017.ui.selected.SelectedActivity;
 
 
 @Singleton
@@ -12,6 +14,8 @@ import mobsoft.hulcsa.com.moblab2017.ui.main.MainActivity;
 public interface MobSoftApplicationComponent {
     void inject(MainActivity mainActivity);
 
-    //void inject(loginActivity a);
+    void inject(SelectedActivity selectedActivity);
+
+    void inject(AboutActivity aboutActivity);
 
 }

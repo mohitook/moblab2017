@@ -1,4 +1,4 @@
-package mobsoft.hulcsa.com.moblab2017.ui.main;
+package mobsoft.hulcsa.com.moblab2017.ui;
 
 public abstract class Presenter<S> {
     protected S screen;

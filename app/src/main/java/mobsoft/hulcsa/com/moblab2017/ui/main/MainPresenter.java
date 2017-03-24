@@ -1,6 +1,6 @@
 package mobsoft.hulcsa.com.moblab2017.ui.main;
 
-import mobsoft.hulcsa.com.moblab2017.ui.main.Presenter;
+import mobsoft.hulcsa.com.moblab2017.ui.Presenter;
 
 /**
  * Created by Patrik on 2017. 03. 19..
@@ -10,7 +10,7 @@ public class MainPresenter extends Presenter<MainScreen> {
 
     private static MainPresenter instance = null;
 
-    private MainPresenter() {
+    public MainPresenter() {
     }
 
     public static MainPresenter getInstance() {

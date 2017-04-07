@@ -11,4 +11,6 @@ public interface SelectedScreen {
     void showRecipe(Recipe recipe);
 
     void addFavorit(Recipe recipe);
+
+    void showMessage(String error);
 }

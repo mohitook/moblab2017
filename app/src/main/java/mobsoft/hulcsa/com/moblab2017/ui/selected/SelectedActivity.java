@@ -48,4 +48,9 @@ public class SelectedActivity extends AppCompatActivity implements SelectedScree
     public void addFavorit(Recipe recipe) {
 
     }
+
+    @Override
+    public void showMessage(String error) {
+
+    }
 }

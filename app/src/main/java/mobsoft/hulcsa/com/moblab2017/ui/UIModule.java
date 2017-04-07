@@ -3,6 +3,11 @@ package mobsoft.hulcsa.com.moblab2017.ui;
 import android.content.Context;
 
 
+import de.greenrobot.event.EventBus;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -29,6 +34,19 @@ public class UIModule {
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
     }
+
+    @Provides
+    @Singleton
+    public EventBus prvideEventBus() {
+        return EventBus.getDefault();
+    }
+
+    @Provides
+    @Singleton
+    public Executor provideExecutor() {
+        return Executors.newFixedThreadPool(1);
+    }
+
 
     @Provides
     @Singleton

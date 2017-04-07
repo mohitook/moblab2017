@@ -8,4 +8,6 @@ import mobsoft.hulcsa.com.moblab2017.model.About;
 
 public interface AboutScreen {
     void showAbout(About about);
+
+    void showMessage(String error);
 }

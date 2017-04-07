@@ -46,4 +46,10 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
     public void showAbout(About about) {
 
     }
+    
+    @Override
+    public void showMessage(String error){
+        
+    }
+    
 }

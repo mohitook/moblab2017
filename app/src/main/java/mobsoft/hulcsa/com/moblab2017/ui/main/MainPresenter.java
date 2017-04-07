@@ -2,6 +2,9 @@ package mobsoft.hulcsa.com.moblab2017.ui.main;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import mobsoft.hulcsa.com.moblab2017.interactor.recipe.RecipesInteractor;
 import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 import mobsoft.hulcsa.com.moblab2017.ui.Presenter;
 
@@ -9,6 +12,9 @@ import mobsoft.hulcsa.com.moblab2017.ui.Presenter;
 public class MainPresenter extends Presenter<MainScreen> {
 
     private static MainPresenter instance = null;
+
+    @Inject
+    RecipesInteractor recipesInteractor;
 
     public MainPresenter() {
     }

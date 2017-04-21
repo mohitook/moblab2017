@@ -8,13 +8,9 @@ import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 import mobsoft.hulcsa.com.moblab2017.interactor.about.AboutInteractor;
-import mobsoft.hulcsa.com.moblab2017.interactor.recipe.RecipesInteractor;
 import mobsoft.hulcsa.com.moblab2017.interactor.recipe.events.GetRecipesEvent;
 import mobsoft.hulcsa.com.moblab2017.model.About;
-import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 import mobsoft.hulcsa.com.moblab2017.ui.Presenter;
-import mobsoft.hulcsa.com.moblab2017.ui.main.MainPresenter;
-import mobsoft.hulcsa.com.moblab2017.ui.selected.SelectedScreen;
 
 import static mobsoft.hulcsa.com.moblab2017.MobSoftApplication.injector;
 

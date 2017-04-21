@@ -7,8 +7,6 @@ import mobsoft.hulcsa.com.moblab2017.MobSoftApplication;
 import mobsoft.hulcsa.com.moblab2017.R;
 import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.List;

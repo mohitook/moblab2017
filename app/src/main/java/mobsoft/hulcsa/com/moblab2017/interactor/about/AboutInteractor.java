@@ -1,14 +1,10 @@
 package mobsoft.hulcsa.com.moblab2017.interactor.about;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 import mobsoft.hulcsa.com.moblab2017.MobSoftApplication;
-import mobsoft.hulcsa.com.moblab2017.interactor.recipe.events.GetRecipesEvent;
 import mobsoft.hulcsa.com.moblab2017.model.About;
-import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 import mobsoft.hulcsa.com.moblab2017.repository.Repository;
 
 /**

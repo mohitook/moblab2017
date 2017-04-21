@@ -8,8 +8,6 @@ import javax.inject.Inject;
 import mobsoft.hulcsa.com.moblab2017.MobSoftApplication;
 import mobsoft.hulcsa.com.moblab2017.R;
 import mobsoft.hulcsa.com.moblab2017.model.About;
-import mobsoft.hulcsa.com.moblab2017.model.Recipe;
-import mobsoft.hulcsa.com.moblab2017.ui.selected.SelectedPresenter;
 
 /**
  * Created by mobsoft on 2017. 03. 24..

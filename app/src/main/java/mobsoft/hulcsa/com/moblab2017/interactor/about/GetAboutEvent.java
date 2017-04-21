@@ -1,9 +1,6 @@
 package mobsoft.hulcsa.com.moblab2017.interactor.about;
 
-import java.util.List;
-
 import mobsoft.hulcsa.com.moblab2017.model.About;
-import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 
 /**
  * Created by mobsoft on 2017. 04. 07..

@@ -5,8 +5,6 @@ import android.content.Context;
 import com.orm.SugarContext;
 import com.orm.SugarRecord;
 
-import java.util.ArrayList;
-
 import java.util.List;
 
 import mobsoft.hulcsa.com.moblab2017.model.About;

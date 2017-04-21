@@ -19,6 +19,8 @@ public class MemoryRepository implements Repository {
 
     public static List<Recipe> recipes;
 
+    public static About about;
+
     @Override
     public void open(Context context) {
 
@@ -28,6 +30,7 @@ public class MemoryRepository implements Repository {
         recipes = new ArrayList<>();
         recipes.add(recipe1);
         recipes.add(recipe2);
+        About about = new About("Colos#Soft","http://www.vectortemplates.com/raster/batman-logo-big.gif","zsozso@gmail.com","DO NOT COPY");
 
     }
 
@@ -43,7 +46,7 @@ public class MemoryRepository implements Repository {
 
     @Override
     public About getAbout() {
-        return null;
+        return about;
     }
 
     @Override

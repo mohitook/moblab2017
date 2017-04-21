@@ -68,6 +68,7 @@ public class MainPresenter extends Presenter<MainScreen> {
     }
 
     public void onEventMainThread(GetRecipesEvent event) {
+        Log.d("test","test");
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
             if (screen != null) {

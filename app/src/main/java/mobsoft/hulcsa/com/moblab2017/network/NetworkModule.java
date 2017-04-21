@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import mobsoft.hulcsa.com.moblab2017.network.about.AboutApi;
 import mobsoft.hulcsa.com.moblab2017.network.recipe.RecipesApi;
 import mobsoft.hulcsa.com.moblab2017.utils.GsonHelper;
 import okhttp3.OkHttpClient;
@@ -41,6 +42,12 @@ public class NetworkModule {
     @Singleton
     public RecipesApi provideATodoApi(Retrofit retrofit) {
         return retrofit.create(RecipesApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public AboutApi provideAboutApi(Retrofit retrofit) {
+        return retrofit.create(AboutApi.class);
     }
 
 

@@ -33,9 +33,16 @@ public class MockInterceptor implements Interceptor {
         Headers headers = request.headers();
 
 
-        if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "Todos")) {
+        if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "recipes")) {
             return RecipeMock.process(request);
         }
+        else if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "recipes/favourite")) {
+            return RecipeMock.process(request);
+        }
+        if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "about")) {
+            return RecipeMock.process(request);
+        }
+
 
 
 

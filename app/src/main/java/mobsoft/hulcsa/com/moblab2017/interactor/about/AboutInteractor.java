@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import de.greenrobot.event.EventBus;
 import mobsoft.hulcsa.com.moblab2017.MobSoftApplication;
 import mobsoft.hulcsa.com.moblab2017.model.About;
+import mobsoft.hulcsa.com.moblab2017.network.about.AboutApi;
 import mobsoft.hulcsa.com.moblab2017.repository.Repository;
 
 /**
@@ -18,6 +19,9 @@ public class AboutInteractor {
     @Inject
     EventBus bus;
 
+    @Inject
+    AboutApi aboutApi;
+
     public AboutInteractor() {
         MobSoftApplication.injector.inject(this);
     }
@@ -25,7 +29,8 @@ public class AboutInteractor {
     public void getAbout(){
         GetAboutEvent event = new GetAboutEvent();
         try {
-            About about = repository.getAbout();
+            //About about = repository.getAbout();
+            About about = aboutApi.aboutGet().execute().body();
             event.setAbout(about);
             bus.post(event);
         } catch (Exception e) {

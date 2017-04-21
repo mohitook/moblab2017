@@ -6,6 +6,7 @@ import dagger.Component;
 import mobsoft.hulcsa.com.moblab2017.interactor.InteractorModule;
 import mobsoft.hulcsa.com.moblab2017.interactor.about.AboutInteractor;
 import mobsoft.hulcsa.com.moblab2017.interactor.recipe.RecipesInteractor;
+import mobsoft.hulcsa.com.moblab2017.network.NetworkModule;
 import mobsoft.hulcsa.com.moblab2017.repository.RepositoryModule;
 import mobsoft.hulcsa.com.moblab2017.ui.UIModule;
 import mobsoft.hulcsa.com.moblab2017.ui.about.AboutActivity;
@@ -17,7 +18,7 @@ import mobsoft.hulcsa.com.moblab2017.ui.selected.SelectedPresenter;
 
 
 @Singleton
-@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, NetworkModule.class})
 public interface MobSoftApplicationComponent {
     void inject(MainActivity mainActivity);
 

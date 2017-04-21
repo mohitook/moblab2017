@@ -5,6 +5,7 @@ package mobsoft.hulcsa.com.moblab2017.mock.intereptors;
  */
 
 import android.net.Uri;
+import android.util.Log;
 
 import mobsoft.hulcsa.com.moblab2017.network.NetworkConfig;
 import mobsoft.hulcsa.com.moblab2017.repository.MemoryRepository;
@@ -28,9 +29,10 @@ public class RecipeMock {
         if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "recipes/favourite") && request.method().equals("POST")) {
             responseString = "this is now your favourite:" + request.body().toString();
             responseCode = 200;
-        }else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "recipes") && request.method().equals("Get")) {
+        }else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "recipes") && request.method().equals("GET")) {
             MemoryRepository memoryRepository = new MemoryRepository();
             memoryRepository.open(null);
+            Log.d("test2",memoryRepository.getRecipes().toString());
             responseString = GsonHelper.getGson().toJson(memoryRepository.getRecipes());
             responseCode = 200;
         } else {

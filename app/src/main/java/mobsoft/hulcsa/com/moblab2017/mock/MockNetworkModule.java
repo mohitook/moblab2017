@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import mobsoft.hulcsa.com.moblab2017.network.NetworkModule;
+import mobsoft.hulcsa.com.moblab2017.network.about.AboutApi;
 import mobsoft.hulcsa.com.moblab2017.network.recipe.RecipesApi;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -33,7 +34,7 @@ public class MockNetworkModule {
     @Singleton
     public OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder) {
 
-        builder.interceptors().add(3, new Interceptor() {
+        builder.interceptors().add( new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
@@ -54,6 +55,12 @@ public class MockNetworkModule {
     @Singleton
     public RecipesApi provideAuthApi(Retrofit retrofit) {
         return networkModule.provideATodoApi(retrofit);
+    }
+
+    @Provides
+    @Singleton
+    public AboutApi provideAboutApi(Retrofit retrofit) {
+        return networkModule.provideAboutApi(retrofit);
     }
 
 

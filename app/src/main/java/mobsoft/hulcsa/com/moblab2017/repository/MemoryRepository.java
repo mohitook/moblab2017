@@ -26,7 +26,7 @@ public class MemoryRepository implements Repository {
 
 
         Recipe recipe1 = new Recipe(1L, "Recipe1", "kamuImage", "directions", Arrays.asList("alma","banán"),false);
-        Recipe recipe2 = new Recipe(1L, "Recipe1", "kamuImage", "directions", Arrays.asList("alma","banán"),false);
+        Recipe recipe2 = new Recipe(2L, "Recipe1", "kamuImage", "directions", Arrays.asList("alma","banán"),false);
         recipes = new ArrayList<>();
         recipes.add(recipe1);
         recipes.add(recipe2);

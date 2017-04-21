@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
 import mobsoft.hulcsa.com.moblab2017.interactor.about.AboutInteractor;
+import mobsoft.hulcsa.com.moblab2017.interactor.about.GetAboutEvent;
 import mobsoft.hulcsa.com.moblab2017.interactor.recipe.events.GetRecipesEvent;
 import mobsoft.hulcsa.com.moblab2017.model.About;
 import mobsoft.hulcsa.com.moblab2017.ui.Presenter;
@@ -67,7 +68,7 @@ public class AboutPresenter extends Presenter<AboutScreen> {
         });
     }
 
-    public void onEventMainThread(GetRecipesEvent event) {
+    public void onEventMainThread(GetAboutEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
             if (screen != null) {

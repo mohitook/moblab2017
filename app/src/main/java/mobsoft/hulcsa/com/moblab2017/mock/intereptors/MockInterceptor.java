@@ -40,7 +40,7 @@ public class MockInterceptor implements Interceptor {
             return RecipeMock.process(request);
         }
         if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "about")) {
-            return RecipeMock.process(request);
+            return AboutMock.process(request);
         }
 
 

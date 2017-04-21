@@ -25,7 +25,7 @@ public class AboutMock {
         Headers headers = request.headers();
 
 
-        if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "about") && request.method().equals("Get")) {
+        if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "about") && request.method().equals("GET")) {
             MemoryRepository memoryRepository = new MemoryRepository();
             memoryRepository.open(null);
             responseString = GsonHelper.getGson().toJson(memoryRepository.getAbout());

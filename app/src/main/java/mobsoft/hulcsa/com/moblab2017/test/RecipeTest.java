@@ -19,6 +19,8 @@ import mobsoft.hulcsa.com.moblab2017.ui.about.AboutPresenter;
 import mobsoft.hulcsa.com.moblab2017.ui.about.AboutScreen;
 import mobsoft.hulcsa.com.moblab2017.ui.main.MainPresenter;
 import mobsoft.hulcsa.com.moblab2017.ui.main.MainScreen;
+import mobsoft.hulcsa.com.moblab2017.ui.selected.SelectedPresenter;
+import mobsoft.hulcsa.com.moblab2017.ui.selected.SelectedScreen;
 import mobsoft.hulcsa.com.moblab2017.utils.RobolectricDaggerTestRunner;
 
 import static mobsoft.hulcsa.com.moblab2017.TestHelper.setTestInjector;
@@ -33,12 +35,14 @@ public class RecipeTest {
 
     private MainPresenter mainPresenter;
     private AboutPresenter aboutPresenter;
+    private SelectedPresenter selectedPresenter;
 
     @Before
     public void setup() throws Exception {
         setTestInjector();
         mainPresenter = new MainPresenter();
         aboutPresenter = new AboutPresenter();
+        selectedPresenter = new SelectedPresenter();
     }
 
     @Test
@@ -56,6 +60,21 @@ public class RecipeTest {
         assertEquals(2L, capturedRecipes.get(1).getId().longValue());
     }
 
+   /* @Test
+    public void testRecipe() {
+        SelectedScreen selectedScreen = mock(SelectedScreen.class);
+        selectedPresenter.attachScreen(selectedScreen);
+        selectedPresenter.setFavourite();
+
+        ArgumentCaptor<List> recipesCaptor = ArgumentCaptor.forClass(List.class);
+
+        verify(selectedScreen, times(1)).showRecipeList(recipesCaptor.capture());
+
+        List<Recipe> capturedRecipes = recipesCaptor.getValue();
+        assertEquals(1L, capturedRecipes.get(0).getId().longValue());
+        assertEquals(2L, capturedRecipes.get(1).getId().longValue());
+    }*/
+
     @Test
     public void testAbout() {
         AboutScreen aboutScreen = mock(AboutScreen.class);
@@ -72,6 +91,7 @@ public class RecipeTest {
 
     @After
     public void tearDown() {
-        mainPresenter.detachScreen();
+        //aboutPresenter.detachScreen();
+        //mainPresenter.detachScreen();
     }
 }

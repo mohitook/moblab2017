@@ -41,7 +41,6 @@ public class MockNetworkModule {
                 return MockHttpServer.call(request);
             }
         });
-
         return builder.build();
     }
 

@@ -30,7 +30,7 @@ public class MemoryRepository implements Repository {
         recipes = new ArrayList<>();
         recipes.add(recipe1);
         recipes.add(recipe2);
-        About about = new About("Colos#Soft","http://www.vectortemplates.com/raster/batman-logo-big.gif","zsozso@gmail.com","DO NOT COPY");
+        about = new About("Colos#Soft","http://www.vectortemplates.com/raster/batman-logo-big.gif","zsozzso(at)gmail.com","DO NOT COPY"); //http://www.vectortemplates.com/raster/batman-logo-big.gif
 
     }
 

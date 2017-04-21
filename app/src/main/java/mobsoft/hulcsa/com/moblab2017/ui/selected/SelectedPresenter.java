@@ -23,6 +23,8 @@ public class SelectedPresenter extends Presenter<SelectedScreen>{
 
     private static MainPresenter instance = null;
 
+    public static final String EXTRA_RECIPE_ID = "recipe_id";
+
     public Recipe selectedRecipe;
 
     @Inject

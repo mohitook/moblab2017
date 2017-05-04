@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.robolectric.annotation.Config;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -34,14 +35,12 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 public class RecipeTest {
 
     private MainPresenter mainPresenter;
-    private AboutPresenter aboutPresenter;
     private SelectedPresenter selectedPresenter;
 
     @Before
     public void setup() throws Exception {
         setTestInjector();
         mainPresenter = new MainPresenter();
-        aboutPresenter = new AboutPresenter();
         selectedPresenter = new SelectedPresenter();
     }
 
@@ -60,34 +59,38 @@ public class RecipeTest {
         assertEquals(2L, capturedRecipes.get(1).getId().longValue());
     }
 
-   /* @Test
+    @Test
     public void testRecipe() {
         SelectedScreen selectedScreen = mock(SelectedScreen.class);
         selectedPresenter.attachScreen(selectedScreen);
+        Recipe recipe1 = new Recipe(1L, "Alma & Banán", "http://www.mindmegette.hu/images/113/O/125921_banan_alma-201510171525.jpg", "directions", Arrays.asList("alma","banán"),false);
+        selectedPresenter.getRecipeCamouflage(recipe1);
         selectedPresenter.setFavourite();
 
-        ArgumentCaptor<List> recipesCaptor = ArgumentCaptor.forClass(List.class);
+        ArgumentCaptor<Recipe> recipesCaptor = ArgumentCaptor.forClass(Recipe.class);
 
-        verify(selectedScreen, times(1)).showRecipeList(recipesCaptor.capture());
+        verify(selectedScreen, times(3)).showRecipe(recipesCaptor.capture());
 
-        List<Recipe> capturedRecipes = recipesCaptor.getValue();
-        assertEquals(1L, capturedRecipes.get(0).getId().longValue());
-        assertEquals(2L, capturedRecipes.get(1).getId().longValue());
-    }*/
+        Recipe capturedRecipe = recipesCaptor.getValue();
+        assertEquals(1L, capturedRecipe.getId().longValue());
+    }
 
     @Test
-    public void testAbout() {
-        AboutScreen aboutScreen = mock(AboutScreen.class);
-        aboutPresenter.attachScreen(aboutScreen);
-        aboutPresenter.getAbout();
+    public void testRecipeFavourite() {
+        SelectedScreen selectedScreen = mock(SelectedScreen.class);
+        selectedPresenter.attachScreen(selectedScreen);
+        Recipe recipe1 = new Recipe(1L, "Alma & Banán", "http://www.mindmegette.hu/images/113/O/125921_banan_alma-201510171525.jpg", "directions", Arrays.asList("alma","banán"),false);
+        selectedPresenter.getRecipeCamouflage(recipe1);
+        selectedPresenter.setFavourite();
 
-        ArgumentCaptor<About> recipesCaptor = ArgumentCaptor.forClass(About.class);
+        ArgumentCaptor<Recipe> recipesCaptor = ArgumentCaptor.forClass(Recipe.class);
 
-        verify(aboutScreen, times(1)).showAbout(recipesCaptor.capture());
+        verify(selectedScreen, times(3)).showRecipe(recipesCaptor.capture());
 
-        About capturedRecipes = recipesCaptor.getValue();
-        assertEquals("Colos#Soft", capturedRecipes.getTitle());
+        Recipe capturedRecipe = recipesCaptor.getValue();
+        assertEquals(true, capturedRecipe.getFavorite());
     }
+
 
     @After
     public void tearDown() {

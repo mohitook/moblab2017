@@ -24,6 +24,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     @Inject
     MainPresenter mainPresenter;
 
+    private List<Recipe> recipeList;
 
     ListView list;
     String[] web = {
@@ -71,23 +76,6 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
             }
         });
 
-        CustomList adapter = new
-                CustomList(MainActivity.this, web, imageId);
-        list=(ListView)findViewById(R.id.main_list);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(MainActivity.this, "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, SelectedActivity.class);
-                //intent.putExtra(SelectedActivity.EXTRA_RECIPE_ID, recipe.getId());
-                startActivity(intent);
-
-            }
-        });
-
         //injecting presenter
         MobSoftApplication.injector.inject(this);
     }
@@ -95,14 +83,27 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     @Override
     protected void onStart() {
         super.onStart();
-        MainPresenter.getInstance().attachScreen(this);
+        mainPresenter.attachScreen(this);
+        mainPresenter.getRecipes();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mainPresenter.attachScreen(this);
+        mainPresenter.detachScreen();
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        // Otherwise defer to system default behavior.
+        //super.onBackPressed();
+    }
+
 
     @Override
     public void showMessage(String text) {
@@ -110,33 +111,69 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     }
 
     @Override
-    public void showRecipeList(List<Recipe> recipeList) {
+    public void showRecipeList(final List<Recipe> recipeList) {
+
+        this.recipeList = recipeList;
+
+        CustomList adapter = new
+                CustomList(MainActivity.this, recipeList);
+        list=(ListView)findViewById(R.id.main_list);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(MainActivity.this, "You Clicked at " +recipeList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SelectedActivity.class);
+                intent.putExtra("SELECTED_RECIPE", recipeList.get(position));
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
-    private class CustomList extends ArrayAdapter<String> {
+    private class CustomList extends ArrayAdapter<Recipe> {
 
         private final Activity context;
-        private final String[] web;
-        private final Integer[] imageId;
-        public CustomList(Activity context,
-                          String[] web, Integer[] imageId) {
-            super(context, R.layout.list_main, web);
+
+        private List<Recipe> recipeList;
+
+
+        public CustomList(Activity context, List<Recipe> recipeList ){
+            super(context, R.layout.list_main, recipeList);
             this.context = context;
-            this.web = web;
-            this.imageId = imageId;
+            this.recipeList = recipeList;
 
         }
+
         @Override
         public View getView(int position, View view, ViewGroup parent) {
+
+            if(recipeList == null ||recipeList.isEmpty())
+            {
+                LayoutInflater inflater = context.getLayoutInflater();
+                View rowView= inflater.inflate(R.layout.list_main, null, true);
+                TextView txtTitle = (TextView) rowView.findViewById(R.id.list_title);
+
+                ImageView imageView = (ImageView) rowView.findViewById(R.id.list_image);
+                txtTitle.setText(web[position]);
+
+                imageView.setImageResource(imageId[position]);
+                return rowView;
+            }
+
             LayoutInflater inflater = context.getLayoutInflater();
             View rowView= inflater.inflate(R.layout.list_main, null, true);
             TextView txtTitle = (TextView) rowView.findViewById(R.id.list_title);
 
             ImageView imageView = (ImageView) rowView.findViewById(R.id.list_image);
-            txtTitle.setText(web[position]);
+            txtTitle.setText(recipeList.get(position).getTitle());
 
-            imageView.setImageResource(imageId[position]);
+            //imageView.setImageResource(imageId[position]);
+            Glide.with(context).load(recipeList.get(position).getTitleImage()).into(imageView);
             return rowView;
         }
     }

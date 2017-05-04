@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import de.greenrobot.event.EventBus;
 import mobsoft.hulcsa.com.moblab2017.interactor.recipe.RecipesInteractor;
 import mobsoft.hulcsa.com.moblab2017.interactor.recipe.events.GetRecipesEvent;
+import mobsoft.hulcsa.com.moblab2017.interactor.recipe.events.SetFavouriteEvent;
 import mobsoft.hulcsa.com.moblab2017.model.Recipe;
 import mobsoft.hulcsa.com.moblab2017.ui.Presenter;
 import mobsoft.hulcsa.com.moblab2017.ui.main.MainPresenter;
@@ -23,7 +24,7 @@ public class SelectedPresenter extends Presenter<SelectedScreen>{
 
     private static MainPresenter instance = null;
 
-    public static final String EXTRA_RECIPE_ID = "recipe_id";
+    public static Recipe EXTRA_RECIPE_ID;
 
     public Recipe selectedRecipe;
 
@@ -59,8 +60,10 @@ public class SelectedPresenter extends Presenter<SelectedScreen>{
         super.detachScreen();
     }
 
-    public void showCookBookList(Recipe recipe){
+    public void getRecipeCamouflage(Recipe recipe){
+        selectedRecipe = recipe;
         screen.showRecipe(recipe);
+
     }
 
 
@@ -75,7 +78,7 @@ public class SelectedPresenter extends Presenter<SelectedScreen>{
     }
 
     //??!!
-    public void onEventMainThread(GetRecipesEvent event) {
+    public void onEventMainThread(SetFavouriteEvent event) {
         if (event.getThrowable() != null) {
             event.getThrowable().printStackTrace();
             if (screen != null) {
@@ -87,7 +90,9 @@ public class SelectedPresenter extends Presenter<SelectedScreen>{
                 /*for(Todo t : event.getRecipes()){
                     screen.showMessage(t.getName());;
                 }*/
-                screen.addFavorit(selectedRecipe);
+
+                //screen.addFavorit(event.getRecipe());
+                getRecipeCamouflage(event.getRecipe());
             }
         }
     }

@@ -30,8 +30,8 @@ public class AboutInteractor {
     public void getAbout(){
         GetAboutEvent event = new GetAboutEvent();
         try {
-            About about = repository.getAbout();
-            //About about = aboutApi.aboutGet().execute().body();
+            //About about = repository.getAbout();
+            About about = aboutApi.aboutGet().execute().body();
             event.setAbout(about);
             bus.post(event);
         } catch (Exception e) {

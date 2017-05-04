@@ -1,5 +1,6 @@
 package mobsoft.hulcsa.com.moblab2017.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
 
 
 @ApiModel(description = "")
-public class Recipe   {
+public class Recipe implements Serializable {
   
   @SerializedName("id")
   private Long id = null;

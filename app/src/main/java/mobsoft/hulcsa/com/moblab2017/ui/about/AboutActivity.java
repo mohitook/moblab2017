@@ -1,5 +1,6 @@
 package mobsoft.hulcsa.com.moblab2017.ui.about;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 import mobsoft.hulcsa.com.moblab2017.MobSoftApplication;
 import mobsoft.hulcsa.com.moblab2017.R;
 import mobsoft.hulcsa.com.moblab2017.model.About;
+import mobsoft.hulcsa.com.moblab2017.ui.main.MainActivity;
 
 /**
  * Created by mobsoft on 2017. 03. 24..
@@ -56,7 +58,7 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
     @Override
     protected void onStop() {
         super.onStop();
-        aboutPresenter.attachScreen(this);
+        aboutPresenter.detachScreen();
     }
 
 
@@ -71,6 +73,13 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
     @Override
     public void showMessage(String error){
         
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        // Otherwise defer to system default behavior.
+        super.onBackPressed();
     }
 
 

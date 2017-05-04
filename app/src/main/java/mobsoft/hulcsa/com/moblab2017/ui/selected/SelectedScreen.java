@@ -13,4 +13,6 @@ public interface SelectedScreen {
     void addFavorit(Recipe recipe);
 
     void showMessage(String error);
+
+    void changeButtonColor();
 }

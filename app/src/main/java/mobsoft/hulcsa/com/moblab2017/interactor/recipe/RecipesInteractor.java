@@ -15,6 +15,8 @@ import mobsoft.hulcsa.com.moblab2017.network.NetworkModule;
 import mobsoft.hulcsa.com.moblab2017.network.recipe.RecipesApi;
 import mobsoft.hulcsa.com.moblab2017.repository.Repository;
 
+import static mobsoft.hulcsa.com.moblab2017.repository.MemoryRepository.recipes;
+
 /**
  * Created by mobsoft on 2017. 04. 07..
  */
@@ -51,9 +53,16 @@ public class RecipesInteractor {
 
     public void setFavourite(Recipe recipe){
         SetFavouriteEvent event = new SetFavouriteEvent();
-        event.setFavourite(recipe);
+        //event.setFavourite(recipe);
         try {
             repository.setFavourite(recipe);
+            bus.post(event);
+
+            List<Recipe> recipes = new ArrayList<>();
+            recipes = recipesApi.recipesFavouritePost(recipe).execute().body();
+            Log.d("testt",recipes.toString());
+            recipe.setFavorite(true);
+            event.setFavourite(recipe);
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);

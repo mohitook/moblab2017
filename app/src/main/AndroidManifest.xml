@@ -36,6 +36,9 @@
 
         <activity android:name=".ui.about.AboutActivity"></activity>
         <activity android:name=".ui.selected.SelectedActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="b6e5bb7141c54b1ae9cab69f8c3bd32f49703e83" />
     </application>
 
 </manifest>

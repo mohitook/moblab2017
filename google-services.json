@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "160813346038",
+    "project_id": "firebase-moblab2017"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160813346038:android:f92e75b77be50c0b",
+        "android_client_info": {
+          "package_name": "mobsoft.hulcsa.com.moblab2017"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwwR12sEMNsiCkIS0bHu26rt5wL0Qa5hs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-98629109-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

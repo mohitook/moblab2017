@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -28,6 +31,8 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
     @Inject
     AboutPresenter aboutPresenter;
 
+    private Tracker mTracker;
+
     private TextView title;
     private ImageView image;
     private TextView contact;
@@ -43,6 +48,12 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
         copyright = (TextView) findViewById(R.id.about_copyright);
         image = (ImageView) findViewById(R.id.about_logo);
         //injecting presenter
+
+        // Obtain the shared Tracker instance.
+               MobSoftApplication application = (MobSoftApplication) getApplication();
+               mTracker = application.getDefaultTracker();
+        mTracker.setScreenName("Image~" + "ALMA");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         MobSoftApplication.injector.inject(this);
 
 
@@ -53,6 +64,8 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
         super.onStart();
         aboutPresenter.attachScreen(this);
         aboutPresenter.getAbout();
+        mTracker.setScreenName("Image~MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -82,6 +95,10 @@ public class AboutActivity extends AppCompatActivity implements AboutScreen{
         super.onBackPressed();
     }
 
+
+      public void forceCrash(View view) {
+                throw new RuntimeException("This is a crash");
+            }
 
     public static Drawable LoadImageFromWebOperations(String url) {
         try {

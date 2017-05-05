@@ -1,0 +1,127 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: Weekly Recipes
+  description: Move your app forward with the Uber API
+  version: "1.0.0"
+# the domain of the service
+host: api.uber.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /recipes:
+    get:
+      summary: Recipe list
+      description: Recipes for the application
+      tags:
+        - Recipes
+      responses:
+        200:
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Recipe'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /recipes/favourite:
+    post:
+      summary: Recipe list
+      description: Recipes for the application
+      tags:
+        - Recipes
+      
+      parameters:
+        - name: recipe
+          in: body
+          required: true
+          description: recipe which favourite set
+          schema:
+            $ref: '#/definitions/Recipe'
+      responses:
+        200:
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Recipe'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /about:
+    get:
+      summary: About informations
+      description: About information for the mobile application
+      tags:
+        - About
+      responses:
+        200:
+          description: About information
+          schema:
+            $ref: '#/definitions/About'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  
+  Recipe:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        description: Id of the recipe.
+      title:
+        type: string
+        description: Title of the Recipe.
+      titleImage:
+        type: string
+        description: Image URL of the Recipe.
+      directions:
+        type: string
+        description: Directions for the recipe.
+      ingredients:
+        type: array
+        items: 
+          type: string
+        description: Ingredients of the recipe.
+      favorite:
+        type: boolean
+        description: Promo code of the Uber user.
+        
+  About:
+    type: object
+    properties:
+      title:
+        type: string
+        description: Title of the About.
+      image:
+        type: string
+        description: Logo of the company.
+      contact:
+        type: string
+        description: Company contact.
+      copyright:
+        type: string
+        description: Copyright.
+      
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
